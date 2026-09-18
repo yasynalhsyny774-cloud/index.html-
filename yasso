@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة عيد ميلاد حبيبتي ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background: radial-gradient(circle at center, #111e38 0%, #070b14 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .page.active {
+            display: flex;
+        }
+        .card {
+            background: rgba(20, 28, 45, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px 25px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        .emoji-header {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .sub-text {
+            font-size: 14px;
+            color: #d1d5db;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 12px;
+            outline: none;
+        }
+        .error-msg {
+            color: #ff4d6d;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            width: 100%;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            margin-bottom: 12px;
+        }
+        .btn-pink {
+            background: linear-gradient(135deg, #ff2a75, #ff5c8a);
+            box-shadow: 0 5px 15px rgba(255, 42, 117, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 20px;
+            width: 100%;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 12px;
+        }
+        .btn-primary:hover, .btn-secondary:hover, .btn-pink:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        .message-box {
+            font-size: 14px;
+            color: #e5e7eb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: right;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-left: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. الشاشة الأولى: الباسورد -->
+    <div class="page active" id="page-password">
+        <div class="card">
+            <div style="font-size: 11px; letter-spacing: 2px; color: #9ca3af; margin-bottom: 8px;">PRIVATE & PERSONAL</div>
+            <h2>A Special Surprise Awaits</h2>
+            <p class="sub-text">This surprise is only for someone very special.</p>
+            <input type="password" id="passInput" placeholder="اكتبي الباسورد هنا...">
+            <div id="errorMsg" class="error-msg">الباسورد غلط، حاولي تاني يا حبيبتي 🥺</div>
+            <button class="btn-primary" onclick="checkPassword()">Unlock My Surprise</button>
+        </div>
+    </div>
+
+    <!-- 2. الشاشة الثانية: صندوق الهدية -->
+    <div class="page" id="page-gift">
+        <div class="card">
+            <div class="emoji-header">🎁</div>
+            <h2>Someone special has a surprise for you...</h2>
+            <br>
+            <button class="btn-primary" onclick="goToPage('page-welcome')">Open Gift 🎀</button>
+        </div>
+    </div>
+
+    <!-- 3. الشاشة الثالثة: التهنئة الأولى -->
+    <div class="page" id="page-welcome">
+        <div class="card">
+            <div class="emoji-header">💖✨</div>
+            <h2>Happy Birthday, to my love</h2>
+            <p class="sub-text">كل سنة وأنتيورة قلبي بخير وسعادة، ربنا يديمك في حياتي أجمل نعمة.</p>
+            <br>
+            <button class="btn-primary btn-pink" onclick="goToPage('page-rate')">انزلي عشان تشوفي الرسالة 💌</button>
+        </div>
+    </div>
+
+    <!-- 4. الشاشة الرابعة: سؤال رأيها في الهدية -->
+    <div class="page" id="page-rate">
+        <div class="card">
+            <div class="emoji-header">🤔 🎁</div>
+            <h2>إيه رايك في الهدية عجبتك؟</h2>
+            <button class="btn-secondary" onclick="goToPage('page-joke')">لا مش حلوة عايزة غيرها 🙄</button>
+            <button class="btn-primary btn-pink" onclick="goToPage('page-wish')">عجبتني جداً ❤️</button>
+        </div>
+    </div>
+
+    <!-- 5. الشاشة الخامسة: الهزار (عشان معيطش) -->
+    <div class="page" id="page-joke">
+        <div class="card">
+            <div class="emoji-header">😂 🥺</div>
+            <h2>لا قولي انها عجبتك عشان معيطش 😂</h2>
+            <button class="btn-primary btn-pink" onclick="goToPage('page-wish')">خلاص عجبتني متعيطش 😅</button>
+            <button class="btn-primary btn-pink" onclick="goToPage('page-wish')">عجبتني ❤️</button>
+        </div>
+    </div>
+
+    <!-- 6. الشاشة السادسة: كتابة الأمنية (Make a Wish)[span_2](start_span)[span_2](end_span) -->
+    <div class="page" id="page-wish">
+        <div class="card">
+            <div class="emoji-header">🎂✨</div>
+            <h2>Make a Wish</h2>
+            <p class="sub-text">اكتبي أمنيتك أو حاجة نفسك تحققيها السنة دي يا قلبى:</p>
+            <input type="text5" type="text" id="wishInput" placeholder="اكتبي أمنيتك هنا...">
+            <button class="btn-primary btn-pink" onclick="saveWish()">إرسال الأمنية 🌟</button>
+        </div>
+    </div>
+
+    <!-- 7. الشاشة السابعة والأخيرة: الرسالة العميقة -->
+    <div class="page" id="page-final">
+        <div class="card">
+            <div class="emoji-header">🥰🎉</div>
+            <h2>Happy Birthday, to my love</h2>
+            <div class="message-box" id="finalMessageContent">
+                يا أجمل صدفة في حياتي، وأعز ما أملك.. النهاردة مش عيد ميلادك لوحدك، ده عيد ميلاد الفرحة اللي دخلت قلبي من يوم ما عرفتك. ربنا يديمك ليا ضحكة وسند وفرحة منورة أيامي كلها، ويا رب السنة دي تحققي كل حاجة نفسك فيها! ✨
+            </div>
+            <button class="btn-primary btn-pink" onclick="alert('كل سنة وأنتي طيبة يا أوزعتي ❤️')">بحبك يا شوشو 🥰</button>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const pass = document.getElementById('passInput').value;
+            if (pass === 'shosho') {
+                goToPage('page-gift');
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        function saveWish() {
+            const wish = document.getElementById('wishInput').value;
+            if(wish.trim() !== "") {
+                // بنضيف الأمنية اللي كتبتها جوه نص الرسالة النهائية عشان تشوفها وتفرح بيها
+                const msgBox = document.getElementById('finalMessageContent');
+                msgBox.innerHTML = `يا أجمل صدفة في حياتي، وأعز ما أملك (أوزعتي الغالية).. النهاردة عيد ميلاد الفرحة اللي دخلت قلبي.<br><br>✨ <b>أمنيتك اللي أتمنتيها:</b> "${wish}"<br>وإن شاء الله ربنا يحققها لك وتوصلي لكل أحلامك، وتفضلي دايماً منورة حياتي وقريبة مني. بحبك يا شوشو! 🥰✨`;
+            }
+            goToPage('page-final');
+        }
+
+        function goToPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
