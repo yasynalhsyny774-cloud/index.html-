@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة عيد الميلاد | شروق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: #0b0f19;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            z-index: -1;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #ff6b81;
+            font-size: 24px;
+        }
+        p {
+            margin-bottom: 20px;
+            color: #ddd;
+            font-size: 16px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #ff6b81;
+        }
+        button {
+            background: linear-gradient(135deg, #ff6b81, #ff4757);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 129, 0.6);
+        }
+        .hidden {
+            display: none;
+        }
+        .letter-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border-right: 4px solid #ff6b81;
+            text-align: right;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 15px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div class="container">
+        <!-- الخطوة 1: التحقق من الباسورد -->
+        <div id="step-password">
+            <h2>🔒 كلمة المرور المطلوبة</h2>
+            <p>أدخلي الكلمة السرية عشان تفتحي المفاجأة يا شروق:</p>
+            <input type="password" id="passInput" placeholder="اكتبي الباسورد هنا...">
+            <button onclick="checkPassword()">دخول للمفاجأة ❤️</button>
+            <p id="errorMsg" style="color: #ff4757; margin-top: 10px; font-size: 14px;"></p>
+        </div>
+
+        <!-- الخطوة 2: الرسالة الرومانسية -->
+        <div id="step-letter" class="hidden">
+            <h2>💌 رسالة خاصة لعيونك</h2>
+            <div class="letter-box">
+رسالتك دي جت قفلت اللعبة وعدت كل الكلام بجد! ❤️
+عارفة؟ أنا تعبت بجد وعينيا وجعتني عقبال ما عملت الموقع ده وخلصته عشان يطلع بالشكل اللي يليق بيكي ويطلعك من الكشرة دي، بس والله كل تعب الدنيا يهون قدام ضحكتك وفرحتك 😍✨
+ومسامحك طبعاً على البلوكات وعلى جنانك، ما أنا ماليش غيرك أصلاً 😂🌚
+كل سنة وأنتِ طيبة يا روح قلبي، وأغلى حاجة حصلت في عمري. وزي ما دعيتي وقولتي.. إن شاء الله السنة الجاية نكون في بيتنا مع بعض وفي الحلال يا رب 🫂❤️
+بحبك قد الدنيا كلها يا أوزعتي 😍🌍
+            </div>
+            <button onclick="showWishForm()">تجهيز أمنية عيد الميلاد 🎂</button>
+        </div>
+
+        <!-- الخطوة 3: نموذج كتابة الأمنية -->
+        <div id="step-wish" class="hidden">
+            <h2>✨ اكتبي أمنيتك للسنة الجديدة</h2>
+            <p>اكتبي أمنيتك هنا، وهتوصل لي فوراً:</p>
+            
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <textarea name="wish" rows="4" placeholder="اكتبي أمنيتك يا شروق..." required></textarea>
+                <button type="submit">إرسال الأمنية 💌</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "shosho";
+
+        function checkPassword() {
+            const inputVal = document.getElementById('passInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (inputVal === correctPassword) {
+                document.getElementById('step-password').classList.add('hidden');
+                document.getElementById('step-letter').classList.remove('hidden');
+            } else {
+                errorMsg.textContent = "الباسورد غلط يا شوشو! جربي تاني 😂❤️";
+            }
+        }
+
+        function showWishForm() {
+            document.getElementById('step-letter').classList.add('hidden');
+            document.getElementById('step-wish').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
